@@ -80,7 +80,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/registerUser","/api/loginUser").permitAll()  // '/registerUser' request is permitted without providing authentication details
                         .anyRequest().authenticated())   //Requires authentication for ALL incoming HTTP requests
 
-                .oauth2Login(Customizer.withDefaults())
+                //implementing Oauth2
+                //.oauth2Login(Customizer.withDefaults())
 
                 // Enables HTTP Basic Authentication (username & password via headers)
                 .httpBasic(Customizer.withDefaults())

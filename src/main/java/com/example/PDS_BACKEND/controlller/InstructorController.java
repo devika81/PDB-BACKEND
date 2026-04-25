@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -24,6 +25,7 @@ public class InstructorController {
 //    ));
 
 
+    //adding an instructor
     @PostMapping("/addInstructors")
     public String addInstructors(@RequestBody Instructor instructor)
     {
@@ -32,6 +34,7 @@ public class InstructorController {
         return "Instructor successfully added!";
     }
 
+    //reading instructors
     @GetMapping("/getInstructors")
     public List<Instructor>getInstructors()
     {
@@ -39,16 +42,21 @@ public class InstructorController {
         return instructorService.getAllInstructorsFromDB();
     }
 
-    @PostMapping("/updateInstructors")
-    public void updateInstructors(@RequestBody Instructor instructor)
+    //updating instructors
+    @PutMapping("/updateInstructors/{instructorName}")
+    public String updateInstructors(@PathVariable String instructorName,
+                                    @RequestBody Map<String,Object> updates)
     {
-        return;
+        instructorService.updateInstructorInDB(instructorName, updates);
+        return "Successfully updated!";
     }
 
-    @DeleteMapping("/deleteInstructors")
-    public void deleteInstructors(@RequestBody Instructor instructor)
+    //deleting instructors
+    @DeleteMapping("/deleteInstructors/{instructorName}")
+    public String deleteInstructors(@PathVariable String instructorName)
     {
-        return;
+        instructorService.deleteInstructorFromDB(instructorName);
+        return "Successfully deleted!";
     }
 
 
