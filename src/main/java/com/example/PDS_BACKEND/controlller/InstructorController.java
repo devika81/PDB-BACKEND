@@ -42,7 +42,7 @@ public class InstructorController {
         return instructorService.getAllInstructorsFromDB();
     }
 
-    //updating instructors
+    //updating instructor
     @PutMapping("/updateInstructors/{instructorName}")
     public String updateInstructors(@PathVariable String instructorName,
                                     @RequestBody Map<String,Object> updates)
